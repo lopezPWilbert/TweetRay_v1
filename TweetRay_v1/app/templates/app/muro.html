@@ -1,0 +1,121 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}		
+<h2>Muro.</h2>	
+<div class="jumbotron">
+    <form method = "POST">
+        {% csrf_token %} 
+        <p><label for="id_titulo">Titulo:</label> <textarea name="titulo" id="id_titulo" rows="1" cols="40" maxlength="100"></textarea></p>
+        <p><label for="id_texto">Texto:</label> <textarea name="texto" id="id_texto" rows="5" cols="40" maxlength="500"></textarea></p>
+
+        <!--{{publicacion_form.as_p}}-->
+        <input type="submit" value="Publicar" name="publicar">
+    </form>
+</div>
+
+
+
+<h4>Publicados</h4>
+<hr />
+
+
+<div class="container">
+ {% for x in publicados %}
+ <h4 class="media-heading">{{x.usuario.username}} <small><i>Posted on {{x.fecha}}</i></small></h4>
+ 
+ 
+  <h2>{{x.titulo}}</h2>
+  <p>{{x.texto}}</p><br>
+  <!--Comentario-->
+  {% for y in comentarios %}
+  {% if y.publicacion_id == x.id %}
+   <div class="media">
+    <div class="media-left">
+      <img src="{{y.usuario.avatar_m.Avatar.url}}" class="media-object" style="width:45px">
+    </div>
+    
+    <div class="media-body">
+      <h4 class="media-heading">{{y.usuario.username}} <small><i>Posted on {{y.fecha}}</i></small></h4>
+      <p>{{y.texto}}</p>
+      <!--Fin comentario-->
+
+      <!--Respuesta-->
+       {% for z in respuesta %}
+        {% if z.comentario_id == y.id %}
+      <!-- Nested media object -->
+      <div class="media">
+        <div class="media-left">
+          <img src="{{z.usuario.avatar_m.Avatar.url}}" class="media-object" style="width:45px">
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading"> {{z.usuario.username}} <small><i>Posted on {{z.fecha}}</i></small></h4>
+          <p>{{z.texto}}</p>
+
+          <!-- Nested media object -->
+          
+          
+        </div>
+        <!--Fin respuesta-->
+        {% endif %}
+        {% endfor %}
+        <!--Inicia otra respuesta-->
+        <!-- Nested media object -->
+        <div class="media">
+          <div class="media-left">
+            <img src="{{avatar}}" class="media-object" style="width:45px">
+          </div>
+          <div class="media-body">
+            <form method = "POST">
+                {% csrf_token %} 
+        <input type="hidden" name="comentario" required="" id="id_comentario" value="{{y.id}}">
+        <input type="hidden" name="usuario" required="" id="id_usuario" value="{{user.id}}">
+        <input type="hidden" name="activo" required="" id="id_activo" value="2">
+        <p> <textarea name="texto" id="id_texto" rows="1" cols="40" maxlength="500" class="form-control input-sm"></textarea></p>
+        <!--{{respuesta_form.as_p}}-->
+
+        <input type="submit" value="Responder" name="responder" class="btn btn-primary">
+                </form>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <!--Fin respuesta-->
+            {% endif %}
+  {% endfor %}
+    <!-- Nested media object -->    
+    <div class="media">
+      <div class="media-left">
+        <img src="{{avatar}}" class="media-object" style="width:45px">
+      </div>
+      <div class="media-body">
+        <form method = "POST">
+        {% csrf_token %} 
+        <input type="hidden" name="publicacion" required="" id="id_publicacion" value="{{x.id}}">
+        <input type="hidden" name="usuario" required="" id="id_usuario" value="{{user.id}}">
+        <input type="hidden" name="activo" required="" id="id_activo" value="2">
+        <p> <textarea name="texto" id="id_texto" rows="1" cols="40" maxlength="500" class="form-control input-lg"></textarea></p>
+        <!--{{comentario_form.as_p}}-->
+        <input type="submit" value="Comentar" name="comentar" class="btn btn-primary">
+			
+    </form>
+      </div>
+    </div>
+<!--Fin respuesta-->
+  </div>
+{% endfor %}
+</div>
+    
+<!--		
+<form method = "POST" class="form_comentarios d-flex justify-content-end flex-wrap">
+	{% csrf_token %} 
+
+	<input type="hidden" name="user" required="" id="id_user" value="{{user.id}}">
+
+	<input type="hidden" name="denuncia" required="" id="id_denuncia" value="{{x.id}}">
+
+	<textarea name="comentario" required id="id_comentario" maxlength="250" placeholder="Comentario"></textarea>
+						
+	<input type="submit" value="Comentar">
+</form>-->
+{% endblock %}

@@ -10,9 +10,11 @@
 			<form method="POST" enctype="multipart/form-data">
 				{% csrf_token %}
 				{{ form.as_p}}
-                <p>
-                    {{form2.as_p}}
-                </p>
+                
+                    
+                    
+                <p><label for="id_Avatar">Avatar:</label> <input type="file" name="Avatar" required id="id_Avatar"></p>
+                
 				<button type="submit" >Registrar</button>
 			</form>
 

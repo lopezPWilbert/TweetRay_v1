@@ -5,6 +5,8 @@
     <Name>TweetRay_v1</Name>
     <RootNamespace>TweetRay_v1</RootNamespace>
     <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+    <WebBrowserPort>
+    </WebBrowserPort>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -56,6 +58,8 @@
     <Folder Include="TweetRay_v1\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\templates\app\muro.html" />
+    <Content Include="app\templates\app\muroRespaldo.html" />
     <Content Include="app\templates\app\signUp.html" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />

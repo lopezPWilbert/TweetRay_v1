@@ -1,0 +1,56 @@
+﻿{% for x in publicados %}
+    <div class="jumbotron">
+    {{x.usuario.username}}
+    <br />
+    {{x.fecha}}
+    <br />
+    <h4>{{x.titulo}}</h4>
+    <br />
+    {{x.texto}}
+    <br />
+    <form method = "POST">
+        {% csrf_token %} 
+        <input type="hidden" name="publicacion" required="" id="id_publicacion" value="{{x.id}}">
+        <input type="hidden" name="usuario" required="" id="id_usuario" value="{{user.id}}">
+        <input type="hidden" name="activo" required="" id="id_activo" value="2">
+        <p><label for="id_texto">Comentario:</label> <textarea name="texto" id="id_texto" rows="1" cols="40" maxlength="500"></textarea></p>
+        <!--{{comentario_form.as_p}}-->
+        <input type="submit" value="Comentar" name="comentar">
+    </form>
+    <br />
+        {% for y in comentarios %}
+            {% if y.publicacion_id == x.id %}
+            cOMENTARIO:(
+            {{y.usuario.username}},
+            {{y.fecha}}
+            <br />
+            {{y.texto}}
+        <br />
+        <form method = "POST">
+        {% csrf_token %} 
+        <input type="hidden" name="comentario" required="" id="id_comentario" value="{{y.id}}">
+        <input type="hidden" name="usuario" required="" id="id_usuario" value="{{user.id}}">
+        <input type="hidden" name="activo" required="" id="id_activo" value="2">
+        <p><label for="id_texto">Comentario:</label> <textarea name="texto" id="id_texto" rows="1" cols="40" maxlength="500"></textarea></p>
+        <!--{{respuesta_form.as_p}}-->
+
+        <input type="submit" value="Responder" name="responder">
+    </form>
+                  {% for z in respuesta %}
+                    {% if z.comentario_id == y.id %}
+        <br />
+                    RESPUESTA:(
+    
+                    {{z.usuario.username}},
+    
+                    {{z.fecha}},
+    
+                    {{z.texto}}
+                                )
+                    {% endif %}
+                    {% endfor %}
+                )
+            {% endif %}
+        {% endfor %}
+        </div>
+    {% endfor %}

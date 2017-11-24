@@ -12,44 +12,37 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from app.models import *
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse_lazy,reverse
 from django.views.generic import FormView
 from django.views.generic import CreateView
 from app.forms import *
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 
-def SingUp2(request):
-    if request.method=='POST':
-        formulario=UserCreationForm(request.POST)
-        if formulario.is_valid:
-            formulario.save()
-            return HttpResponseRedirect('/')
-    else:
-        formulario=UserCreationForm()
-    return render(request,'app/singUp.html',{'formulario':formulario})
+def Muro(request):
+    avatar=Avatar_m.objects.filter(usuario=request.user.id)
+    avatar=avatar[0].Avatar.url
+    publicados=Publicaciones_m.objects.filter(activo=True).order_by('fecha')
+    comentarios=Comentario_m.objects.filter(activo=True).order_by('fecha')
+    respuesta=Respuesta_m.objects.filter(activo=True).order_by('fecha')
 
-class SingUp3(FormView):
-    template_name = 'app/singup.html'
-    form_class=Usuario_f
-    succes_url=reverse_lazy('login')
-
-    def form_valid(self, form):
-        user=form.save()
-        p=Usuario_m()
-        p.usuario=user
-        p.Telefono=form.cleaned_data['Telefono']
-        p.Correo=form.cleaned_data['Correo']
-        p.Direccion=form.cleaned_data['Direccion']
-        #p.Avatar=form.cleaned_data['Avatar']
-        p.save()
-
-        return super(SingUp, self).form_valid(form)
-def SignUp4(request):
-    form=Usuario_f(request.POST or None, request.FILES or None)
-    if(request.method=='POST' and form.is_valid()):
-        form.save()
-    return render(request, 'app/signup.html', {'form':form})
+    publicacion_form=Publicacion_f(request.POST or None)
+    comentario_form=Comentario_f(request.POST or None)
+    respuesta_form=Respuesta_f(request.POST or None)
+    if request.method == 'POST':
+        if 'publicar' in request.POST:
+            if publicacion_form.is_valid():
+                Publicaciones_m.objects.create(texto=request.POST['texto'],titulo=request.POST['titulo'], usuario_id=request.user.id, activo=True)
+        if 'comentar' in request.POST:
+            if comentario_form.is_valid():
+                #Comentario_m.objects.create()
+                comentario_form.save()
+        if 'responder' in request.POST:
+            if respuesta_form.is_valid():
+                #Comentario_m.objects.create()
+                respuesta_form.save()
+        return HttpResponseRedirect(reverse("muro"))
+    return render(request, 'app/muro.html', {'publicacion_form':publicacion_form,'comentario_form':comentario_form,'respuesta_form':respuesta_form, 'publicados':publicados,'comentarios':comentarios,'respuesta':respuesta,'avatar':avatar})
 def SignUp(request):
     
     if request.method == 'POST':
@@ -61,7 +54,7 @@ def SignUp(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            if form2.is_valid() and request.FILES['Avatar']:
+            if  request.FILES['Avatar']:
                 id_form=form_resultado.id
 
                 Avatar_m.objects.create(Avatar=request.FILES['Avatar'], usuario_id=id_form)

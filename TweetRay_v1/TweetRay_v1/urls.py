@@ -18,6 +18,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    url(r'^muro/$', app.views.Muro, name='muro'),
     url(r'^signup/$',app.views.SignUp, name='signup'),
     #url(r'^singup/$',app.views.SingUp.as_view(), name='singup'),
     # Examples:

@@ -39,3 +39,17 @@ class Avatar_f(forms.ModelForm):
     class Meta:
         model=Avatar_m
         fields='__all__'
+class Publicacion_f(forms.ModelForm):
+    class Meta:
+        model=Publicaciones_m
+        fields=['titulo','texto']
+class Comentario_f(forms.ModelForm):
+    class Meta:
+        model=Comentario_m
+        #fields=['texto']
+        fields='__all__'
+class Respuesta_f(forms.ModelForm):
+    class Meta:
+        model=Respuesta_m
+        #fields=['texto']
+        fields='__all__'
