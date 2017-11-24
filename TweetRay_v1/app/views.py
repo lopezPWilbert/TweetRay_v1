@@ -19,6 +19,9 @@ from app.forms import *
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 
+def MiMuro(request):
+    mis_publicaciones=Publicaciones_m.objects.filter(usuario=request.user.id)
+    return render(request, 'app/mimuro.html',{'mis_publicaciones':mis_publicaciones})
 def Muro(request):
     avatar=Avatar_m.objects.filter(usuario=request.user.id)
     avatar=avatar[0].Avatar.url

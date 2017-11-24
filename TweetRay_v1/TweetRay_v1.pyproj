@@ -58,6 +58,7 @@
     <Folder Include="TweetRay_v1\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\templates\app\mimuro.html" />
     <Content Include="app\templates\app\muro.html" />
     <Content Include="app\templates\app\muroRespaldo.html" />
     <Content Include="app\templates\app\signUp.html" />

@@ -1,0 +1,75 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+
+ <div class="container">
+    <hr>
+    <div class="row">
+      <div class="col-xs-6">
+        <h1>{{user.first_name}} {{user.last_name}}</h1>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-xs-7">
+        <div class="media">
+          <div class="media-left"> <a href="#"> <img class="media-object img-rounded" src="{{user.avatar_m.Avatar.url}}" alt="..." style="width:150px"> </a> </div>
+          <div class="media-body">
+            <h2 class="media-heading">{{user.username}}</h2>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, neque, in, accusamus optio architecto debitis dolor animi placeat ut ab corporis laboriosam itaque. Nobis, sapiente quo dolorum ut quod possimus doloremque suscipit ad doloribus quam dolor </div>
+        </div>
+      </div>
+      <div class="col-xs-5 well">
+        <div class="row">
+          <div class="col-lg-6">
+            <h4><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> : Desde {{user.date_joined}} </h4>
+          </div>
+          <div class="col-lg-6">
+            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> : {{user.email}}</h4>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+  </div>
+<h3>Mis publicaciones</h3>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-9 col-md-12">
+        {% for x in mis_publicaciones%}
+        {% if forloop.counter >= 6%}
+<div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+          
+            <div class="caption">
+              <h3>{{x.titulo}}</h3>
+              <p>{{x.texto}}</p>
+              <hr>
+              <p class="text-center"><a href="{% url 'muro'%}" class="btn btn-success" role="button">For Sale</a></p>
+            </div>
+        </div>
+    </div>
+    {% else %}
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+          
+            <div class="caption">
+              <h3>{{x.titulo}}</h3>
+              <p>{{x.texto}}</p>
+                <small><i>Posted on {{x.fecha}}</i></small>
+              <hr>
+              <p class="text-center"><a href="{% url 'muro'%}" class="btn btn-success" role="button">Ir al Muro</a></p>
+            </div>
+        </div>
+        
+        
+      {% endif %}
+        {% endfor%}
+
+    </div>
+    
+  </div>
+</div>
+
+{% endblock %}
