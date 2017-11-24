@@ -1,0 +1,19 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+
+<h2>Registro de usuarios.</h2>
+<h3>Registrese en nuestra aplicacion para disfrutar de los beneficions de TweetRay</h3>
+
+<p>Use this area to provide additional information.</p>
+
+			<form method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ form.as_p}}
+                <p>
+                    {{form2.as_p}}
+                </p>
+				<button type="submit" >Registrar</button>
+			</form>
+
+{% endblock %}
