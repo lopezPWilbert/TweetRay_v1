@@ -1,14 +1,15 @@
 ﻿{% extends "app/layout.html" %}
 
-{% block content %}		
+{% block content %}	
+
 <h2>Muro.</h2>	
+
 <div class="jumbotron">
     <form method = "POST">
         {% csrf_token %} 
         <p><label for="id_titulo">Titulo:</label> <textarea name="titulo" id="id_titulo" rows="1" cols="40" maxlength="100"></textarea></p>
         <p><label for="id_texto">Texto:</label> <textarea name="texto" id="id_texto" rows="5" cols="40" maxlength="500"></textarea></p>
 
-        <!--{{publicacion_form.as_p}}-->
         <input type="submit" value="Publicar" name="publicar">
     </form>
 </div>
@@ -20,15 +21,19 @@
 
 
 <div class="container">
+    <!--Inicia container-->
+    <div><div><div><div><div><div><div><div><div><div><div><div><div><div>
  {% for x in publicados %}
  <h4 class="media-heading">{{x.usuario.username}} <small><i>Posted on {{x.fecha}}</i></small></h4>
- 
+ <!--Inicia publicados-->
  
   <h2>{{x.titulo}}</h2>
   <p>{{x.texto}}</p><br>
   <!--Comentario-->
   {% for y in comentarios %}
+    <!--Inicia comentarios-->
   {% if y.publicacion_id == x.id %}
+    <!--Inicia if comentarios-->
    <div class="media">
     <div class="media-left">
       <img src="{{y.usuario.avatar_m.Avatar.url}}" class="media-object" style="width:45px">
@@ -41,7 +46,9 @@
 
       <!--Respuesta-->
        {% for z in respuesta %}
+        <!--Inicia respuesta-->
         {% if z.comentario_id == y.id %}
+        <!--Inicia if respuesta-->
       <!-- Nested media object -->
       <div class="media">
         <div class="media-left">
@@ -59,6 +66,7 @@
         {% endif %}
         {% endfor %}
         <!--Inicia otra respuesta-->
+          <!--Inicia form respuesta-->
         <!-- Nested media object -->
         <div class="media">
           <div class="media-left">
@@ -66,15 +74,15 @@
           </div>
           <div class="media-body">
             <form method = "POST">
-                {% csrf_token %} 
+            {% csrf_token %}
         <input type="hidden" name="comentario" required="" id="id_comentario" value="{{y.id}}">
         <input type="hidden" name="usuario" required="" id="id_usuario" value="{{user.id}}">
         <input type="hidden" name="activo" required="" id="id_activo" value="2">
         <p> <textarea name="texto" id="id_texto" rows="1" cols="40" maxlength="500" class="form-control input-sm"></textarea></p>
-        <!--{{respuesta_form.as_p}}-->
+        
 
         <input type="submit" value="Responder" name="responder" class="btn btn-primary">
-                </form>
+			  </form>
           </div>
         </div>
         
@@ -83,6 +91,7 @@
     <!--Fin respuesta-->
             {% endif %}
   {% endfor %}
+       <!--Inicia form comentario-->
     <!-- Nested media object -->    
     <div class="media">
       <div class="media-left">
@@ -90,12 +99,11 @@
       </div>
       <div class="media-body">
         <form method = "POST">
-        {% csrf_token %} 
+        {% csrf_token %}
         <input type="hidden" name="publicacion" required="" id="id_publicacion" value="{{x.id}}">
         <input type="hidden" name="usuario" required="" id="id_usuario" value="{{user.id}}">
         <input type="hidden" name="activo" required="" id="id_activo" value="2">
         <p> <textarea name="texto" id="id_texto" rows="1" cols="40" maxlength="500" class="form-control input-lg"></textarea></p>
-        <!--{{comentario_form.as_p}}-->
         <input type="submit" value="Comentar" name="comentar" class="btn btn-primary">
 			
     </form>
@@ -104,18 +112,9 @@
 <!--Fin respuesta-->
   </div>
 {% endfor %}
+        </div></div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
+
     
-<!--		
-<form method = "POST" class="form_comentarios d-flex justify-content-end flex-wrap">
-	{% csrf_token %} 
 
-	<input type="hidden" name="user" required="" id="id_user" value="{{user.id}}">
-
-	<input type="hidden" name="denuncia" required="" id="id_denuncia" value="{{x.id}}">
-
-	<textarea name="comentario" required id="id_comentario" maxlength="250" placeholder="Comentario"></textarea>
-						
-	<input type="submit" value="Comentar">
-</form>-->
 {% endblock %}

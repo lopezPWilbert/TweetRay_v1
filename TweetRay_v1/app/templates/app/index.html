@@ -3,31 +3,17 @@
 {% block content %}
 
 <div class="jumbotron">
-    <h1>Django</h1>
-    <p class="lead">Django is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://www.djangoproject.com/" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+    <h1>TwitteRay</h1>
+    {% if user.is_authenticated %}
+    <p class="lead">Bienvenido a TwetteRay. Visite el muro de la Ciudad o vaya a su perfil.</p>
+        <p><a href="{% url 'muro' %}" class="btn btn-primary btn-large">Ir al muro</a></p>
+    <p><a href="{% url 'mimuro' %}" class="btn btn-success btn-large"  >Ir a mi perfil </a></p>
+    {% else %}
+    <p class="lead">Bienvenido a TwetteRay. Inicie sesi&oacute;n o registrese para disfrutar del muro de Parra s City.</p>
+    <p><a href="{% url 'login' %}" class="btn btn-primary btn-large">Iniciar sesi&oacute;n</a></p>
+    <p><a href="{% url 'signup' %}" class="btn btn-success btn-large"  >Registrarse </a></p>
+    {% endif %}
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            Django gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://www.djangobook.com/en/2.0/index.html">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>The Python Package Index is a repository of software for the Python programming language.</p>
-        <p><a class="btn btn-default" href="https://pypi.org/">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Microsoft Azure</h2>
-        <p>You can easily publish to Microsoft Azure using Visual Studio. Find out how you can host your application using a free trial today.</p>
-        <p><a class="btn btn-default" href="http://azure.microsoft.com">Learn more &raquo;</a></p>
-    </div>
-</div>
 
 {% endblock %}

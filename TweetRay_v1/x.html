@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> - My Django Application</title>
+    
+    <link rel="stylesheet" type="text/css" href="static/app/content/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="static/app/content/site.css" />
+    <script src="static/app/scripts/modernizr-2.6.2.js"></script>
+    
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/" class="navbar-brand">Application name</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+                    
+                    <li><a href="/mimuro">Mi perfil</a></li>
+                    <li><a href="/muro/">Muro</a></li>
+                    
+                </ul>
+                
+<form id="logoutForm" action="/logout" method="post" class="navbar-right">
+    <input type='hidden' name='csrfmiddlewaretoken' value='JE0mAH1AcBKP9XtA8n2jUdULfZ1MGuQ5LY8hxhKqNRKuSjxMaEI2zVuHBFsjx7sr' />
+    <ul class="nav navbar-nav navbar-right">
+        <li><span class="navbar-brand">Hello alex1!</span></li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    </ul>
+
+</form>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+		
+<h2>Muro.</h2>	
+<div class="jumbotron">
+    <form method = "POST">
+        <input type='hidden' name='csrfmiddlewaretoken' value='JE0mAH1AcBKP9XtA8n2jUdULfZ1MGuQ5LY8hxhKqNRKuSjxMaEI2zVuHBFsjx7sr' /> 
+        <p><label for="id_titulo">Titulo:</label> <textarea name="titulo" id="id_titulo" rows="1" cols="40" maxlength="100"></textarea></p>
+        <p><label for="id_texto">Texto:</label> <textarea name="texto" id="id_texto" rows="5" cols="40" maxlength="500"></textarea></p>
+
+        <input type="submit" value="Publicar" name="publicar">
+    </form>
+</div>
+
+
+
+<h4>Publicados</h4>
+<hr />
+
+
+<div class="container">
+    <!--Inicia container-->
+ 
+ <h4 class="media-heading">alex2 <small><i>Posted on Nov. 24, 2017, 10:40 a.m.</i></small></h4>
+ <!--Inicia publicados-->
+ 
+  <h2>Pub1</h2>
+  <p>txt de pub 1</p><br>
+  <!--Comentario-->
+  
+    <!--Inicia comentarios-->
+  
+    <!--Inicia if comentarios-->
+   <div class="media">
+    <div class="media-left">
+      <img src="media/avatar/2017/11/24/2_F-22_Raptors.jpg" class="media-object" style="width:45px">
+    </div>
+    
+    <div class="media-body">
+      <h4 class="media-heading">alex2 <small><i>Posted on Nov. 24, 2017, 10:41 a.m.</i></small></h4>
+      <p>coment1</p>
+      <!--Fin comentario-->
+
+      <!--Respuesta-->
+       
+        <!--Inicia respuesta-->
+        
+        <!--Inicia if respuesta-->
+      <!-- Nested media object -->
+      <div class="media">
+        <div class="media-left">
+          <img src="media/avatar/2017/11/24/A-10A.jpg" class="media-object" style="width:45px">
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading"> alex4 <small><i>Posted on Nov. 24, 2017, 10:43 a.m.</i></small></h4>
+          <p>respuesta1</p>
+
+          <!-- Nested media object -->
+          
+          
+        </div>
+        <!--Fin respuesta-->
+        
+        
+        <!--Inicia respuesta-->
+        
+        
+        <!--Inicia otra respuesta-->
+          <!--Inicia form respuesta-->
+        <!-- Nested media object -->
+        <div class="media">
+          <div class="media-left">
+            <img src="media/avatar/2017/11/24/F-22_RAPTOR..jpg" class="media-object" style="width:45px">
+          </div>
+          <div class="media-body">
+            <form method = "POST">
+            <input type='hidden' name='csrfmiddlewaretoken' value='JE0mAH1AcBKP9XtA8n2jUdULfZ1MGuQ5LY8hxhKqNRKuSjxMaEI2zVuHBFsjx7sr' />
+        <input type="hidden" name="comentario" required="" id="id_comentario" value="1">
+        <input type="hidden" name="usuario" required="" id="id_usuario" value="1">
+        <input type="hidden" name="activo" required="" id="id_activo" value="2">
+        <p> <textarea name="texto" id="id_texto" rows="1" cols="40" maxlength="500" class="form-control input-sm"></textarea></p>
+        
+
+        <input type="submit" value="Responder" name="responder" class="btn btn-primary">
+			  </form>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <!--Fin respuesta-->
+            
+  
+    <!--Inicia comentarios-->
+  
+    <!--Inicia if comentarios-->
+   <div class="media">
+    <div class="media-left">
+      <img src="media/avatar/2017/11/24/A-10A.jpg" class="media-object" style="width:45px">
+    </div>
+    
+    <div class="media-body">
+      <h4 class="media-heading">alex4 <small><i>Posted on Nov. 24, 2017, 10:43 a.m.</i></small></h4>
+      <p>ta bien curada</p>
+      <!--Fin comentario-->
+
+      <!--Respuesta-->
+       
+        <!--Inicia respuesta-->
+        
+        
+        <!--Inicia respuesta-->
+        
+        <!--Inicia if respuesta-->
+      <!-- Nested media object -->
+      <div class="media">
+        <div class="media-left">
+          <img src="media/avatar/2017/11/24/A-10A.jpg" class="media-object" style="width:45px">
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading"> alex4 <small><i>Posted on Nov. 24, 2017, 10:43 a.m.</i></small></h4>
+          <p>pos si</p>
+
+          <!-- Nested media object -->
+          
+          
+        </div>
+        <!--Fin respuesta-->
+        
+        
+        <!--Inicia otra respuesta-->
+          <!--Inicia form respuesta-->
+        <!-- Nested media object -->
+        <div class="media">
+          <div class="media-left">
+            <img src="media/avatar/2017/11/24/F-22_RAPTOR..jpg" class="media-object" style="width:45px">
+          </div>
+          <div class="media-body">
+            <form method = "POST">
+            <input type='hidden' name='csrfmiddlewaretoken' value='JE0mAH1AcBKP9XtA8n2jUdULfZ1MGuQ5LY8hxhKqNRKuSjxMaEI2zVuHBFsjx7sr' />
+        <input type="hidden" name="comentario" required="" id="id_comentario" value="2">
+        <input type="hidden" name="usuario" required="" id="id_usuario" value="1">
+        <input type="hidden" name="activo" required="" id="id_activo" value="2">
+        <p> <textarea name="texto" id="id_texto" rows="1" cols="40" maxlength="500" class="form-control input-sm"></textarea></p>
+        
+
+        <input type="submit" value="Responder" name="responder" class="btn btn-primary">
+			  </form>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <!--Fin respuesta-->
+            
+  
+       <!--Inicia form comentario-->
+    <!-- Nested media object -->    
+    <div class="media">
+      <div class="media-left">
+        <img src="media/avatar/2017/11/24/F-22_RAPTOR..jpg" class="media-object" style="width:45px">
+      </div>
+      <div class="media-body">
+        <form method = "POST">
+        <input type='hidden' name='csrfmiddlewaretoken' value='JE0mAH1AcBKP9XtA8n2jUdULfZ1MGuQ5LY8hxhKqNRKuSjxMaEI2zVuHBFsjx7sr' />
+        <input type="hidden" name="publicacion" required="" id="id_publicacion" value="1">
+        <input type="hidden" name="usuario" required="" id="id_usuario" value="1">
+        <input type="hidden" name="activo" required="" id="id_activo" value="2">
+        <p> <textarea name="texto" id="id_texto" rows="1" cols="40" maxlength="500" class="form-control input-lg"></textarea></p>
+        <input type="submit" value="Comentar" name="comentar" class="btn btn-primary">
+			
+    </form>
+      </div>
+    </div>
+<!--Fin respuesta-->
+  </div>
+
+ <h4 class="media-heading">alex2 <small><i>Posted on Nov. 24, 2017, 11:47 a.m.</i></small></h4>
+ <!--Inicia publicados-->
+ 
+  <h2>Pub2</h2>
+  <p>txt2</p><br>
+  <!--Comentario-->
+  
+    <!--Inicia comentarios-->
+  
+  
+    <!--Inicia comentarios-->
+  
+  
+       <!--Inicia form comentario-->
+    <!-- Nested media object -->    
+    <div class="media">
+      <div class="media-left">
+        <img src="media/avatar/2017/11/24/F-22_RAPTOR..jpg" class="media-object" style="width:45px">
+      </div>
+      <div class="media-body">
+        <form method = "POST">
+        <input type='hidden' name='csrfmiddlewaretoken' value='JE0mAH1AcBKP9XtA8n2jUdULfZ1MGuQ5LY8hxhKqNRKuSjxMaEI2zVuHBFsjx7sr' />
+        <input type="hidden" name="publicacion" required="" id="id_publicacion" value="2">
+        <input type="hidden" name="usuario" required="" id="id_usuario" value="1">
+        <input type="hidden" name="activo" required="" id="id_activo" value="2">
+        <p> <textarea name="texto" id="id_texto" rows="1" cols="40" maxlength="500" class="form-control input-lg"></textarea></p>
+        <input type="submit" value="Comentar" name="comentar" class="btn btn-primary">
+			
+    </form>
+      </div>
+    </div>
+<!--Fin respuesta-->
+  </div>
+
+ <h4 class="media-heading">alex2 <small><i>Posted on Nov. 24, 2017, 11:47 a.m.</i></small></h4>
+ <!--Inicia publicados-->
+ 
+  <h2>Pub3</h2>
+  <p>txt3</p><br>
+  <!--Comentario-->
+  
+    <!--Inicia comentarios-->
+  
+  
+    <!--Inicia comentarios-->
+  
+  
+       <!--Inicia form comentario-->
+    <!-- Nested media object -->    
+    <div class="media">
+      <div class="media-left">
+        <img src="media/avatar/2017/11/24/F-22_RAPTOR..jpg" class="media-object" style="width:45px">
+      </div>
+      <div class="media-body">
+        <form method = "POST">
+        <input type='hidden' name='csrfmiddlewaretoken' value='JE0mAH1AcBKP9XtA8n2jUdULfZ1MGuQ5LY8hxhKqNRKuSjxMaEI2zVuHBFsjx7sr' />
+        <input type="hidden" name="publicacion" required="" id="id_publicacion" value="3">
+        <input type="hidden" name="usuario" required="" id="id_usuario" value="1">
+        <input type="hidden" name="activo" required="" id="id_activo" value="2">
+        <p> <textarea name="texto" id="id_texto" rows="1" cols="40" maxlength="500" class="form-control input-lg"></textarea></p>
+        <input type="submit" value="Comentar" name="comentar" class="btn btn-primary">
+			
+    </form>
+      </div>
+    </div>
+<!--Fin respuesta-->
+  </div>
+
+ <h4 class="media-heading">alex2 <small><i>Posted on Nov. 24, 2017, 11:48 a.m.</i></small></h4>
+ <!--Inicia publicados-->
+ 
+  <h2>Pub4</h2>
+  <p>txt4</p><br>
+  <!--Comentario-->
+  
+    <!--Inicia comentarios-->
+  
+  
+    <!--Inicia comentarios-->
+  
+  
+       <!--Inicia form comentario-->
+    <!-- Nested media object -->    
+    <div class="media">
+      <div class="media-left">
+        <img src="media/avatar/2017/11/24/F-22_RAPTOR..jpg" class="media-object" style="width:45px">
+      </div>
+      <div class="media-body">
+        <form method = "POST">
+        <input type='hidden' name='csrfmiddlewaretoken' value='JE0mAH1AcBKP9XtA8n2jUdULfZ1MGuQ5LY8hxhKqNRKuSjxMaEI2zVuHBFsjx7sr' />
+        <input type="hidden" name="publicacion" required="" id="id_publicacion" value="4">
+        <input type="hidden" name="usuario" required="" id="id_usuario" value="1">
+        <input type="hidden" name="activo" required="" id="id_activo" value="2">
+        <p> <textarea name="texto" id="id_texto" rows="1" cols="40" maxlength="500" class="form-control input-lg"></textarea></p>
+        <input type="submit" value="Comentar" name="comentar" class="btn btn-primary">
+			
+    </form>
+      </div>
+    </div>
+<!--Fin respuesta-->
+  </div>
+
+ <h4 class="media-heading">alex2 <small><i>Posted on Nov. 24, 2017, 11:49 a.m.</i></small></h4>
+ <!--Inicia publicados-->
+ 
+  <h2>Pub5</h2>
+  <p>txt5</p><br>
+  <!--Comentario-->
+  
+    <!--Inicia comentarios-->
+  
+  
+    <!--Inicia comentarios-->
+  
+  
+       <!--Inicia form comentario-->
+    <!-- Nested media object -->    
+    <div class="media">
+      <div class="media-left">
+        <img src="media/avatar/2017/11/24/F-22_RAPTOR..jpg" class="media-object" style="width:45px">
+      </div>
+      <div class="media-body">
+        <form method = "POST">
+        <input type='hidden' name='csrfmiddlewaretoken' value='JE0mAH1AcBKP9XtA8n2jUdULfZ1MGuQ5LY8hxhKqNRKuSjxMaEI2zVuHBFsjx7sr' />
+        <input type="hidden" name="publicacion" required="" id="id_publicacion" value="5">
+        <input type="hidden" name="usuario" required="" id="id_usuario" value="1">
+        <input type="hidden" name="activo" required="" id="id_activo" value="2">
+        <p> <textarea name="texto" id="id_texto" rows="1" cols="40" maxlength="500" class="form-control input-lg"></textarea></p>
+        <input type="submit" value="Comentar" name="comentar" class="btn btn-primary">
+			
+    </form>
+      </div>
+    </div>
+<!--Fin respuesta-->
+  </div>
+
+ <h4 class="media-heading">alex2 <small><i>Posted on Nov. 24, 2017, 11:49 a.m.</i></small></h4>
+ <!--Inicia publicados-->
+ 
+  <h2>pub6</h2>
+  <p>txt6</p><br>
+  <!--Comentario-->
+  
+    <!--Inicia comentarios-->
+  
+  
+    <!--Inicia comentarios-->
+  
+  
+       <!--Inicia form comentario-->
+    <!-- Nested media object -->    
+    <div class="media">
+      <div class="media-left">
+        <img src="media/avatar/2017/11/24/F-22_RAPTOR..jpg" class="media-object" style="width:45px">
+      </div>
+      <div class="media-body">
+        <form method = "POST">
+        <input type='hidden' name='csrfmiddlewaretoken' value='JE0mAH1AcBKP9XtA8n2jUdULfZ1MGuQ5LY8hxhKqNRKuSjxMaEI2zVuHBFsjx7sr' />
+        <input type="hidden" name="publicacion" required="" id="id_publicacion" value="6">
+        <input type="hidden" name="usuario" required="" id="id_usuario" value="1">
+        <input type="hidden" name="activo" required="" id="id_activo" value="2">
+        <p> <textarea name="texto" id="id_texto" rows="1" cols="40" maxlength="500" class="form-control input-lg"></textarea></p>
+        <input type="submit" value="Comentar" name="comentar" class="btn btn-primary">
+			
+    </form>
+      </div>
+    </div>
+<!--Fin respuesta-->
+  </div>
+
+ <h4 class="media-heading">alex4 <small><i>Posted on Nov. 24, 2017, 11:50 a.m.</i></small></h4>
+ <!--Inicia publicados-->
+ 
+  <h2>PubA</h2>
+  <p>txtA</p><br>
+  <!--Comentario-->
+  
+    <!--Inicia comentarios-->
+  
+  
+    <!--Inicia comentarios-->
+  
+  
+       <!--Inicia form comentario-->
+    <!-- Nested media object -->    
+    <div class="media">
+      <div class="media-left">
+        <img src="media/avatar/2017/11/24/F-22_RAPTOR..jpg" class="media-object" style="width:45px">
+      </div>
+      <div class="media-body">
+        <form method = "POST">
+        <input type='hidden' name='csrfmiddlewaretoken' value='JE0mAH1AcBKP9XtA8n2jUdULfZ1MGuQ5LY8hxhKqNRKuSjxMaEI2zVuHBFsjx7sr' />
+        <input type="hidden" name="publicacion" required="" id="id_publicacion" value="7">
+        <input type="hidden" name="usuario" required="" id="id_usuario" value="1">
+        <input type="hidden" name="activo" required="" id="id_activo" value="2">
+        <p> <textarea name="texto" id="id_texto" rows="1" cols="40" maxlength="500" class="form-control input-lg"></textarea></p>
+        <input type="submit" value="Comentar" name="comentar" class="btn btn-primary">
+			
+    </form>
+      </div>
+    </div>
+<!--Fin respuesta-->
+  </div>
+
+</div>
+    
+
+
+        <hr/>
+        <footer>
+            <p>&copy;  - My Django Application</p>
+        </footer>
+    </div>
+
+    <script src="static/app/scripts/jquery-1.11.3.min.js"></script>
+    <script src="static/app/scripts/bootstrap.js"></script>
+    <script src="static/app/scripts/respond.js"></script>
+
+
+</body>
+</html>

@@ -61,7 +61,7 @@ def SignUp(request):
                 id_form=form_resultado.id
 
                 Avatar_m.objects.create(Avatar=request.FILES['Avatar'], usuario_id=id_form)
-            return redirect('home')
+            return redirect('muro')
     else:
         form = Usuario_f()
         form2=Avatar_f()
@@ -73,33 +73,7 @@ def home(request):
         request,
         'app/index.html',
         {
-            'title':'Home Page',
-            'year':datetime.now().year,
-        }
-    )
-
-def contact(request):
-    """Renders the contact page."""
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/contact.html',
-        {
-            'title':'Contact',
-            'message':'Your contact page.',
-            'year':datetime.now().year,
-        }
-    )
-
-def about(request):
-    """Renders the about page."""
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/about.html',
-        {
-            'title':'About',
-            'message':'Your application description page.',
+            'title':'BIenvenido',
             'year':datetime.now().year,
         }
     )
